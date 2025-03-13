@@ -1,0 +1,14 @@
+version: '1'
+
+services:
+  authorizationservice1:
+    image: 'autorizationservice:1.0'
+    ports:
+      - '8080'
+  authorizationservice2:
+    image: 'autorizationservice:2.0'
+    ports:
+      - '8080'
+    depends_on:
+      - authorizationservice1
+
