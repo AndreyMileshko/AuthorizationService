@@ -1,8 +1,9 @@
 package ru.netology.authorizationservice.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import ru.netology.authorizationservice.config.CustomerParameter;
+import ru.netology.authorizationservice.models.Customer;
 import ru.netology.authorizationservice.repository.Authorities;
 import ru.netology.authorizationservice.service.AuthorizationService;
 
@@ -17,8 +18,7 @@ public class AuthorizationController {
     }
 
     @GetMapping("/authorize")
-    public List<Authorities> getAuthorities(@RequestParam("user") String user,
-                                            @RequestParam("password") String password) {
-        return service.getAuthorities(user, password);
+    public List<Authorities> getAuthorities(@CustomerParameter Customer customer) {
+        return service.getAuthorities(customer.getUser(), customer.getPassword());
     }
 }
